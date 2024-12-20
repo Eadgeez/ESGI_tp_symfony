@@ -1,0 +1,13 @@
+services:
+  web:
+    ports:
+      - "8000:80"
+
+  node:
+    ports:
+      - "${NODE_DEV_PORT}:${NODE_DEV_PORT}"
+
+  mailbox:
+    image: dockage/mailcatcher
+    ports:
+      - "8081:1080"
