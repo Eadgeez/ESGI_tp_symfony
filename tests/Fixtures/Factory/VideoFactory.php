@@ -32,8 +32,12 @@ final class VideoFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'title' => self::faker()->text(255),
-            'url' => self::faker()->text(255),
+            'title' => self::faker()->word(),
+            'url' => 'https://youtu.be/dQw4w9WgXcQ?si=66Cg3XgAanYSiOdl',
+            'duration' => self::faker()->numberBetween(120, 7200),
+            'createdAt' => self::faker()->dateTime(),
+            'updatedAt' => self::faker()->dateTime(),
+            'deletedAt' => self::faker()->dateTime(),
         ];
     }
 

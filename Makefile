@@ -90,7 +90,7 @@ entity: ## Create a new entity
 	@docker compose exec -it ${PHP_CONTAINER_NAME} bin/console make:entity
 
 fixtures: create-db ## Load fixtures
-	@$(dp) bin/console hautelook:fixtures:load --no-interaction -vv
+	@$(dp) bin/console doctrine:fixtures:load --no-interaction -vv
 
 ##- Gestion des assets
 

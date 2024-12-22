@@ -13,6 +13,9 @@ class ExcerciseBuilder implements BuilderInterface
     private ?int $excerciseNumber = null;
     private ?Question $question = null;
     private ?Comment $comment = null;
+    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
+    private ?\DateTimeImmutable $deletedAt = null;
 
     public function withChapter(Chapter $chapter): self
     {
@@ -38,13 +41,37 @@ class ExcerciseBuilder implements BuilderInterface
         return $this;
     }
 
-    public function build(bool $persist = true): Excercise
+    public function withCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function withUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function withDeletedAt(\DateTimeImmutable $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    public function build(bool $persist = true): object
     {
         $excercise = ExcerciseFactory::createOne(array_filter([
             'chapter' => $this->chapter,
             'excercise_number' => $this->excerciseNumber,
-            'questions' => $this->questions,
-            'comments' => $this->comments,
+            'questions' => $this->question,
+            'comments' => $this->comment,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'deletedAt' => $this->deletedAt,
         ]));
 
         if ($persist) {

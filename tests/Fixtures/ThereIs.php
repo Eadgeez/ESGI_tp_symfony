@@ -5,6 +5,10 @@ namespace App\Tests\Fixtures;
 use App\Tests\Fixtures\Builder\ChapterBuilder;
 use App\Tests\Fixtures\Builder\SubjectBuilder;
 use App\Tests\Fixtures\Builder\UserBuilder;
+use App\Tests\Fixtures\Builder\ExcerciseBuilder;
+use App\Tests\Fixtures\Builder\QuestionBuilder;
+use App\Tests\Fixtures\Builder\VideoBuilder;
+use App\Tests\Fixtures\Builder\CommentBuilder;
 
 class ThereIs
 {

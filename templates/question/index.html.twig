@@ -1,20 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello QuestionController!{% endblock %}
+{% block title %}Question index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Question index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Content</th>
+                <th>Hint</th>
+                <th>Answer</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>DeletedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.content }}</td>
+                <td>{{ question.hint }}</td>
+                <td>{{ question.answer }}</td>
+                <td>{{ question.createdAt ? question.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ question.updatedAt ? question.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ question.deletedAt ? question.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_question_show', {'id': question.id}) }}">show</a>
+                    <a href="{{ path('app_question_edit', {'id': question.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/srv/src/Controller/QuestionController.php</code></li>
-        <li>Your template at <code>/srv/templates/question/index.html.twig</code></li>
-    </ul>
-</div>
+    <a href="{{ path('app_question_new') }}">Create new</a>
 {% endblock %}

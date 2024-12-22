@@ -3,7 +3,14 @@
 ## Installation
 
 ```bash
+first : 
 $ make up
+then :
+$ make install
+$ make fixtures
+$ make assets-install
+$ make assets-build
+
 ```
 
 ## Usage
@@ -16,9 +23,26 @@ $ make help
 ## Fixtures 
 
 ### User :
+- **Super Admin** :
+    - Username : Super Admin
+    - email : super.admin@eureka.fr
+    - Password : super_admin_eureka
 - **Admin** :
-    - Username : `
-    - Password : ``
+    - Username : Admin
+    - email : admin@eureka.fr
+    - Password : admin_eureka
+- **Teacher** :
+    - Username : Teacher
+    - email : teacher@eureka.fr
+    - Password : teacher_eureka
+- **Student** :
+    - Username : Student
+    - email : student@eureka.fr
+    - Password : student_eureka
+- **Banned User** :
+    - Username : Banned User
+    - email : banned@eureka.fr
+    - Password : banned_eureka
 
 ---
 

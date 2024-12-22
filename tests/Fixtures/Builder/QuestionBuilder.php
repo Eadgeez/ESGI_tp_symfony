@@ -4,6 +4,7 @@ namespace App\Tests\Fixtures\Builder;
 
 use App\Entity\Excercise;
 use App\Entity\Question;
+use App\Tests\Fixtures\Factory\QuestionFactory;
 
 class QuestionBuilder implements BuilderInterface
 {
@@ -11,6 +12,9 @@ class QuestionBuilder implements BuilderInterface
     private ?string $content = null;
     private ?string $hint = null;
     private ?string $answer = null;
+    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
+    private ?\DateTimeImmutable $deletedAt = null;
 
     public function withExcercise(Excercise $excercise): self
     {
@@ -40,13 +44,37 @@ class QuestionBuilder implements BuilderInterface
         return $this;
     }
 
+    public function withCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function withUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function withDeletedAt(\DateTimeImmutable $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
     public function build(bool $persist = true): Question
     {
-        $question = Question::createOne(array_filter([
+        $question = QuestionFactory::createOne(array_filter([
             'excercise' => $this->excercise,
             'content' => $this->content,
             'hint' => $this->hint,
             'answer' => $this->answer,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'deletedAt' => $this->deletedAt,
         ]));
 
         if ($persist) {

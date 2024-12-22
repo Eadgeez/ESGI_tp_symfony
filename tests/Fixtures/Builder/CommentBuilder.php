@@ -17,6 +17,9 @@ class CommentBuilder implements BuilderInterface
     private ?Chapter $chapter = null;
     private ?Excercise $excercise = null;
     private ?Video $video = null;
+    private ?\DateTimeImmutable $createdAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
+    private ?\DateTimeImmutable $deletedAt = null;
 
     public function withContent(string $content): self
     {
@@ -60,6 +63,27 @@ class CommentBuilder implements BuilderInterface
         return $this;
     }
 
+    public function withCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function withUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function withDeletedAt(\DateTimeImmutable $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
     public function build(bool $persist = true): Comment
     {
         $comment = CommentFactory::createOne(array_filter([
@@ -69,6 +93,9 @@ class CommentBuilder implements BuilderInterface
             'chapter' => $this->chapter,
             'excercise' => $this->excercise,
             'video' => $this->video,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'deletedAt' => $this->deletedAt,
         ]));
 
         if ($persist) {

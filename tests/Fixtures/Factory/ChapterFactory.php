@@ -32,8 +32,11 @@ final class ChapterFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'name' => self::faker()->text(255),
-            'subject' => SubjectFactory::new(),
+            'name' => self::faker()->word(),
+            'subject' => SubjectFactory::random(),
+            'createdAt' => self::faker()->dateTime(),
+            'updatedAt' => self::faker()->dateTime(),
+            'deletedAt' => self::faker()->dateTime(),
         ];
     }
 

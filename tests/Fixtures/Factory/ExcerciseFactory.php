@@ -33,6 +33,10 @@ final class ExcerciseFactory extends PersistentProxyObjectFactory
     {
         return [
             'excercise_number' => self::faker()->randomNumber(),
+            'chapter' => ChapterFactory::random(),
+            'createdAt' => self::faker()->dateTime(),
+            'updatedAt' => self::faker()->dateTime(),
+            'deletedAt' => self::faker()->dateTime(),
         ];
     }
 

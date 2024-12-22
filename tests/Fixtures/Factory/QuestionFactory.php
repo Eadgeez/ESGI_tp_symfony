@@ -32,9 +32,13 @@ final class QuestionFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'answer' => self::faker()->text(255),
-            'content' => self::faker()->text(255),
-            'excercise' => ExcerciseFactory::new(),
+            'content' => self::faker()->sentence(),
+            'hint' => self::faker()->sentence(),
+            'answer' => self::faker()->text(150),
+            'excercise' => ExcerciseFactory::random(),
+            'createdAt' => self::faker()->dateTime(),
+            'updatedAt' => self::faker()->dateTime(),
+            'deletedAt' => self::faker()->dateTime(),
         ];
     }
 

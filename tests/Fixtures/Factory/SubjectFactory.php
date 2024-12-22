@@ -32,7 +32,10 @@ final class SubjectFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'name' => self::faker()->text(255),
+            'name' => self::faker()->word(),
+            'createdAt' => self::faker()->dateTime(),
+            'updatedAt' => self::faker()->dateTime(),
+            'deletedAt' => self::faker()->dateTime(),
         ];
     }
 
