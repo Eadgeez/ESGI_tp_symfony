@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Eureka - Create an Account</h1>
+
+            {% if error is defined %}
+                <div class="bg-red-100 text-red-700 px-4 py-3 rounded mb-4">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form method="post" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                            required
+                    >
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                            required
+                    >
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                            required
+                    >
+                </div>
+
+                <div>
+                    <label for="verify-password" class="block text-sm font-medium text-gray-700">Verify Password</label>
+                    <input
+                            type="password"
+                            name="verify-password"
+                            id="verify-password"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                            required
+                    >
+                </div>
+
+                <button
+                        type="submit"
+                        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                >
+                    Register
+                </button>
+            </form>
+
+            <p class="mt-6 text-sm text-gray-600">
+                Already have an account? <a href="{{ path('app_login') }}" class="text-blue-500 hover:underline">Log in</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

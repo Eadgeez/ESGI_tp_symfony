@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/video')]
 final class VideoController extends AbstractController
@@ -22,6 +23,7 @@ final class VideoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_TEACHER')]
     #[Route('/new', name: 'app_video_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -50,6 +52,7 @@ final class VideoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_TEACHER')]
     #[Route('/{id}/edit', name: 'app_video_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Video $video, EntityManagerInterface $entityManager): Response
     {
@@ -68,6 +71,7 @@ final class VideoController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_TEACHER')]
     #[Route('/{id}', name: 'app_video_delete', methods: ['POST'])]
     public function delete(Request $request, Video $video, EntityManagerInterface $entityManager): Response
     {

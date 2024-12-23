@@ -30,7 +30,7 @@ class AuthController extends AbstractController
     ) {
     }
 
-    #[Route('/register', name: 'register')]
+    #[Route('/register', name: 'app_register')]
     public function register(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -42,6 +42,7 @@ class AuthController extends AbstractController
             $user->setUsername($request->request->get('username'));
             $user->setEmail($request->request->get('email'));
             $user->setRoles(['ROLE_USER']);
+            $user->setCreatedAt(new \DateTimeImmutable());
 
             if ($request->request->get('password') === $request->request->get('verify-password')) {
                 $hashedPassword = $passwordHasher->hashPassword(
@@ -58,7 +59,7 @@ class AuthController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('auth/register.html.twig');
@@ -106,7 +107,7 @@ class AuthController extends AbstractController
             );
         }
 
-        return $this->render('reset_password/request.html.twig', [
+        return $this->render('auth/request.html.twig', [
             'requestForm' => $form,
         ]);
     }
@@ -123,7 +124,7 @@ class AuthController extends AbstractController
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
-        return $this->render('reset_password/check_email.html.twig', [
+        return $this->render('email/check_email.html.twig', [
             'resetToken' => $resetToken,
         ]);
     }
@@ -182,7 +183,7 @@ class AuthController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('reset_password/reset.html.twig', [
+        return $this->render('auth/reset.html.twig', [
             'resetForm' => $form,
         ]);
     }

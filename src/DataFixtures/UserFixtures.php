@@ -23,7 +23,7 @@ class UserFixtures extends Fixture
         $deletedAt = $updatedAt->modify('+1 day');
 
         $superAdmin = new User();
-        $superAdmin->setUsername('Super Admin');
+        $superAdmin->setUsername('SuperAdminDu60');
         $superAdmin->setEmail('super.admin@admineureka.fr');
         $password = $this->hasher->hashPassword($superAdmin, 'super_admin_eureka');
         $superAdmin->setPassword($password);
@@ -33,7 +33,7 @@ class UserFixtures extends Fixture
         $manager->persist($superAdmin);
 
         $admin = new User();
-        $admin->setUsername('Admin');
+        $admin->setUsername('AdminRootxRoot');
         $admin->setEmail('admin@eureka.fr');
         $password = $this->hasher->hashPassword($admin, 'admin_eureka');
         $admin->setPassword($password);
@@ -43,7 +43,7 @@ class UserFixtures extends Fixture
         $manager->persist($admin);
 
         $teacher = new User();
-        $teacher->setUsername('Teacher');
+        $teacher->setUsername('EnglishTeacher60');
         $teacher->setEmail('teacher@eureka.fr');
         $password = $this->hasher->hashPassword($teacher, 'teacher_eureka');
         $teacher->setPassword($password);
@@ -53,7 +53,7 @@ class UserFixtures extends Fixture
         $manager->persist($teacher);
 
         $student = new User();
-        $student->setUsername('Student');
+        $student->setUsername('TomTheStudent');
         $student->setEmail('student@eureka.fr');
         $password = $this->hasher->hashPassword($student, 'student_eureka');
         $student->setPassword($password);
@@ -63,7 +63,7 @@ class UserFixtures extends Fixture
         $manager->persist($student);
 
         $banned = new User();
-        $banned->setUsername('Banned');
+        $banned->setUsername('BannedNoobXxX');
         $banned->setEmail('banned@eureka.fr');
         $password = $this->hasher->hashPassword($banned, 'banned_eureka');
         $banned->setPassword($password);

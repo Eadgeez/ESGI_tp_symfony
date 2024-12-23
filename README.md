@@ -24,23 +24,23 @@ $ make help
 
 ### User :
 - **Super Admin** :
-    - Username : Super Admin
+    - Username : SuperAdminDu60
     - email : super.admin@eureka.fr
     - Password : super_admin_eureka
 - **Admin** :
-    - Username : Admin
+    - Username : AdminRootxRoot
     - email : admin@eureka.fr
     - Password : admin_eureka
 - **Teacher** :
-    - Username : Teacher
+    - Username : EnglishTeacher60
     - email : teacher@eureka.fr
     - Password : teacher_eureka
 - **Student** :
-    - Username : Student
+    - Username : TomTheStudent
     - email : student@eureka.fr
     - Password : student_eureka
 - **Banned User** :
-    - Username : Banned User
+    - Username : BannedNoobXxX
     - email : banned@eureka.fr
     - Password : banned_eureka
 

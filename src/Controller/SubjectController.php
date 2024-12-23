@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/subject')]
 final class SubjectController extends AbstractController
@@ -22,6 +23,7 @@ final class SubjectController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_TEACHER')]
     #[Route('/new', name: 'app_subject_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -50,6 +52,7 @@ final class SubjectController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_TEACHER')]
     #[Route('/{id}/edit', name: 'app_subject_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Subject $subject, EntityManagerInterface $entityManager): Response
     {
@@ -68,6 +71,7 @@ final class SubjectController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_TEACHER')]
     #[Route('/{id}', name: 'app_subject_delete', methods: ['POST'])]
     public function delete(Request $request, Subject $subject, EntityManagerInterface $entityManager): Response
     {

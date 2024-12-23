@@ -35,6 +35,7 @@ final class VideoFactory extends PersistentProxyObjectFactory
             'title' => self::faker()->word(),
             'url' => 'https://youtu.be/dQw4w9WgXcQ?si=66Cg3XgAanYSiOdl',
             'duration' => self::faker()->numberBetween(120, 7200),
+            'chapter' => ChapterFactory::random(),
             'createdAt' => self::faker()->dateTime(),
             'updatedAt' => self::faker()->dateTime(),
             'deletedAt' => self::faker()->dateTime(),

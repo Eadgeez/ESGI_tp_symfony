@@ -3,39 +3,61 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+    <div class="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <form method="post" class="space-y-6">
+                {% if error %}
+                    <div class="bg-red-100 text-red-700 px-4 py-3 rounded">
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    </div>
+                {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+                {% if app.user %}
+                    <div class="text-sm text-gray-600">
+                        You are logged in as <strong>{{ app.user.userIdentifier }}</strong>,
+                        <a href="{{ path('app_logout') }}" class="text-blue-500 hover:underline">Logout</a>
+                    </div>
+                {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Username</label>
-        <input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+                <h1 class="text-xl font-semibold text-gray-800">Eureka - Please sign in</h1>
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input
+                            type="text"
+                            value="{{ last_username }}"
+                            name="_username"
+                            id="username"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                            autocomplete="username"
+                            required
+                            autofocus
+                    >
+                </div>
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input
+                            type="password"
+                            name="_password"
+                            id="password"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+                            autocomplete="current-password"
+                            required
+                    >
+                </div>
 
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+                <button
+                        type="submit"
+                        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                >
+                    Sign in
+                </button>
+            </form>
+            <a href="{{ path('app_forgot_password') }}" class="mt-4 block text-center text-sm text-blue-500 hover:underline">Forgot your password?</a>
+            <a href="{{ path('app_register') }}" class="mt-4 block text-center text-sm text-blue-500 hover:underline">Create an account</a>
+        </div>
+    </div>
 {% endblock %}

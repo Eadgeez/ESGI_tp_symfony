@@ -1,20 +1,72 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}Eureka{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/srv/src/Controller/DefaultController.php</code></li>
-        <li>Your template at <code>/srv/templates/default/index.html.twig</code></li>
-    </ul>
-</div>
+        <div class="min-h-screen bg-gray-100 flex items-center justify-center">
+                <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+                    <h1 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Eureka</h1>
+                    <p class="mb-5 font-semibold text-gray-700 text-center">
+                            Bienvenue sur Eureka, la platefrom de cours en ligne !
+                    </p>
+                        {% if app.user %}
+                                <p class="mb-5 font-semibold text-gray-700 text-center">
+                                        Bonjour, {{ app.user.username }}.
+                                        Vous êtes un {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                                      Super Admin
+                                                    {% elseif is_granted('ROLE_ADMIN') %}
+                                                        Admin
+                                                    {% elseif is_granted('ROLE_TEACHER') %}
+                                                        Teacher
+                                                    {% elseif is_granted('ROLE_STUDENT') %}
+                                                        Student
+                                                    {% elseif is_granted('ROLE_USER') %}
+                                                        User
+                                                    {% elseif is_granted('ROLE_BANNED') %}
+                                                        Banned
+                                                    {% else %}
+                                                        c'est pas normal que tu vois ça !
+                                                    {% endif %}.
+                                </p>
+                            <div>
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <div class="flex justify-between space-x-4 mb-5">
+                                        <a href="{{ path('app_subject_new') }}" class="w-full inline-block text-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">Ajouter une matière</a>
+                                        <a href="{{ path('app_chapter_new') }}" class="w-full inline-block text-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">Ajouter un chapitre</a>
+                                    </div>
+                                {% elseif is_granted('ROLE_ADMIN') %}
+                                    <a></a>
+                                {% elseif is_granted('ROLE_TEACHER') %}
+                                    <a></a>
+                                {% elseif is_granted('ROLE_STUDENT') %}
+                                    <div class="flex justify-between space-x-4 mb-5">
+                                        <a href="/subject" class="w-full inline-block text-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">Voir les matières</a>
+                                        <a href="/chapter" class="w-full inline-block text-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">Voir les chapitres</a>
+                                    </div>
+                                {% elseif is_granted('ROLE_USER') %}
+                                    <a></a>
+                                {% else %}
+                                    <a></a>
+                                {% endif %}
+                            </div>
+                            <div class="flex justify-between space-x-4">
+                                <a href="{{ path('app_logout') }}" class="w-full inline-block text-center bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2">
+                                        Déconnexion
+                                </a>
+                                <a  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="w-full inline-block text-center bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                    Cliquez moi ;)
+                                </a>
+                            </div>
+                        {% else %}
+                                <div class="flex justify-between space-x-4">
+                                        <a href="{{ path('app_login') }}" class="w-full inline-block text-center bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+                                                Connexion
+                                        </a>
+                                        <a href="{{ path('app_register') }}" class="w-full inline-block text-center bg-gray-500 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                                                Inscription
+                                        </a>
+                                </div>
+                        {% endif %}
+                </div>
+        </div>
 {% endblock %}
